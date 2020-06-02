@@ -4,7 +4,12 @@
 # Write a function f1 that takes two integer positional arguments and returns
 # the sum. This is what you'd consider to be a regular, normal function.
 
-# YOUR CODE HERE
+def f1(x: int, y: int) -> int:
+    if isinstance(x, int) and isinstance(y, int):
+        return x + y
+    else:
+        raise ValueError("can only parse integers as arguments please try again")
+        exit()
 
 print(f1(1, 2))
 
@@ -12,8 +17,8 @@ print(f1(1, 2))
 # sum.
 # Note: Google for "python arbitrary arguments" and look for "*args"
 
-# YOUR CODE HERE
-
+def f2( *nums: int) -> int:
+    return lambda x: x += x for x in nums
 print(f2(1))                    # Should print 1
 print(f2(1, 3))                 # Should print 4
 print(f2(1, 4, -12))            # Should print -7

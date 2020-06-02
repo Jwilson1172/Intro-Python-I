@@ -1,4 +1,6 @@
 import math
+import datetime
+import time
 
 
 class Assignment:
@@ -250,8 +252,8 @@ class Assignment:
         # value is -130 and change its name to "not a real place"
         # Note: It's okay to access the dictionary using bracket notation on the
         # waypoints list.
-        waypoints[0]['name'] = "not a real place"
-        waypoints[0]['lon'] = -130
+        waypoints[0]["name"] = "not a real place"
+        waypoints[0]["lon"] = -130
 
         # Write a loop that prints out all the field values for all the waypoints
         counter = 0
@@ -259,17 +261,33 @@ class Assignment:
         # and print a header so that the user knows which waypoint is being
         # printed
         for waypoint in waypoints:
-            print(f"Waypoint #{counter},", end='')
+            print(f"Waypoint #{counter},", end="")
             # inter through all of the elements in the dictionary and print
             # each key value pair
             for k, v in zip(waypoint.keys(), waypoint.items()):
-                print(f"\n\t{k}{v}", end='')
+                print(f"\n\t{k}{v}", end="")
             # add a number to the counter so that the print will uniquely ident
             # each element in the list
             counter += 1
         return
 
     def ten(self):
+        def is_even(num):
+            if num % 2 == 0:
+                return True
+            else:
+                return False
+
+        # Read a number from the keyboard
+        num = input("Enter a number: ")
+        num = int(num)
+
+        # Print out "Even!" if the number is even. Otherwise print "Odd"
+        if is_even(num):
+            print("Even!")
+        else:
+            print("Odd!")
+
         return
 
     def eleven(self):
@@ -279,6 +297,61 @@ class Assignment:
         return
 
     def thirteen(self):
+        def stream_content(mode: int) -> str:
+            """
+            A function that reads ./src/rj_full.txt in mode 1, and in mode 2 it\
+            writes user generated code to a file ./src/bar.txt
+
+            Arguments:
+            ---------------
+            `mode` {int}[ 1 or 2 ] : 1 - read\n2 - write
+            """
+            # mode one is passed
+            if mode == 1:
+                try:
+                    target = open("./src/rj_full.txt", "r", encoding="utf-8")
+                    data = target.read()
+                    print(data)
+                except Exception as e:
+                    print("there was a problem open the file to read")
+                    print(e)
+                    exit(1)
+            # mode 2 is passed
+            elif mode == 2:
+                PATH = "bar.txt"
+                print("INFO: mode 2 passed to the function")
+                try:
+                    print(f"INFO: tring to open {PATH} for writing")
+                    with open(PATH, "wt") as fp:
+                        assert fp.writable()
+                        print("INFO: file opened and writeable, tring to write.")
+                        fp.write(
+                            f"{datetime.datetime()}: this is one line,",
+                            f"{datetime.datetime()}: this is line two,",
+                            f"{datetime.datetime()}: this is line three",
+                        )
+                        print("INFO: writing done trying to clush to disk")
+                        fp.flush()
+                        print("INFO: flushed, trying to close file")
+                        fp.close()
+                        print("LOOP: waiting until compleate close")
+                        counter = 0
+                        while fp.closed() is False:
+                            time.sleep(2)
+                            print("file status is: OPEN [{}rounds]".format(counter))
+                            counter += 1
+                        print("done")
+                except Exception as e:
+                    print("there was a problem open the file to read")
+                    print(e)
+                    exit(1)
+            return
+
+        # init with the read mode enabled
+        stream_content(1)
+
+        # inti with the write mode enabled
+        stream_content(2)
         return
 
     def fourteen(self):

@@ -1,3 +1,18 @@
+# editor settings
 .vscode
-*.pyc
-__pycache__
+
+# PYTHONDONTWRITEBYTECODE=1
+#*.pyc
+#__pycache__
+
+# planning and dev
+goals.md
+data
+.ipynb_checkpoints
+
+# env
+.env
+
+# misc
+.empty
+
